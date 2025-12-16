@@ -1,6 +1,7 @@
 import  express from 'express'
 import dotenv from 'dotenv'
 import authRoute from './routes/auth.route.js'
+import connectDB from './lib/util/db.js'
 
 
 dotenv.config()
@@ -16,6 +17,18 @@ app.use("/api/auth",authRoute);
 
 
 
-app.listen(port,()=>{
-    console.log(`http://localhost:${port}`);
-})
+const startServer=async()=>{
+    try {
+        await connectDB()
+        app.listen(port,()=>{
+            console.log(`http://localhost:${port}`);    
+        })
+        
+    } catch (error) {
+        console.error(`Error in the server:${error.message}`);
+        process.exit(1);
+    }
+}
+
+startServer();
+
