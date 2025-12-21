@@ -14,6 +14,13 @@ app.use(express.urlencoded({extended:true}));
 
 
 app.use("/api/auth",authRoute);
+app.use("/api/users",userroute);
+app.use("/api/posts",postroute);
+app.use("/api/comments",commentRoute);
+app.use("/api/likes",likeRoute);
+app.use("/api/saved",savedRoute);
+app.use("/api/search",searchRoute);
+app.use("/api/ai",aiRoute);
 
 
 
